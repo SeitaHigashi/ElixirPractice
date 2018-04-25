@@ -2,7 +2,7 @@ defmodule ModestGreeter.Router do
   use ModestGreeter.Web, :router
 
   pipeline :browser do
-    plug :accepts, ["html"]
+  plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
     plug :protect_from_forgery
@@ -13,5 +13,6 @@ defmodule ModestGreeter.Router do
   pipe_through :browser
 
   get "/hello",HelloController,:show
+  get "/hello/:name",HelloController,:show
   end
 end

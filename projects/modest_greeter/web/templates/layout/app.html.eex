@@ -7,12 +7,20 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>ModestGreeter</title>
+    <title>ModestGreeter (<%= @name %>)</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
   <body>
+    <header>
+      <h1>ModestGreeter</h1>
+    </header>
+    <main>
       <%= render @view_module, @view_template, assigns %>
+    </main>
+    <footer>
+      &copy;2016 Oiax Inc.
+    </footer>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>
