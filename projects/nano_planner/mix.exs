@@ -41,7 +41,9 @@ defmodule NanoPlanner.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
-      {:ecto, "~> 2.1.6"}
+      {:ecto, "~> 2.1.6"},
+      {:timex, "~> 3.1"},
+      {:timex_ecto, "~> 3.1"}
     ]
   end
 
