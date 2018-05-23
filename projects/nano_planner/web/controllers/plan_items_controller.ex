@@ -6,6 +6,7 @@ defmodule NanoPlanner.PlanItemsController do
     plan_items = PlanItem
     |> order_by(asc: :starts_at, asc: :ends_at, asc: :id)
     |> Repo.all
+    |> PlanItem.convert_datetime
     render conn, "index.html", plan_items: plan_items
   end
 end
