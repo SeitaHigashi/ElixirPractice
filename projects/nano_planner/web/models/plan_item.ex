@@ -19,16 +19,19 @@ defmodule NanoPlanner.PlanItem do
     |> validate_required([])
   end
 
-def convert_datetime(items) do
-  alias Timex.Timezone
+  def convert_datetime(items) when is_list(items) do
+#    Enum.map items, fn(item) -> convert_datetime(item) end
+    Enum.map items, &(convert_datetime &1)
+  end
 
-  time_zone = Application.get_env(:nano_planner, :default_time_zone)
+  def convert_datetime(%__MODULE__{} = item) do
+    alias Timex.Timezone
 
-  Enum.map items, fn(item) ->
-    Map.merge(item,%{
-      starts_at: Timezone.convert(item.starts_at, time_zone),
-      ends_at: Timezone.convert(item.ends_at, time_zone)
+    time_zone = Application.get_env(:nano_planner, :default_time_zone)
+
+    Map.merge(item, %{
+      starts_at: Timezone.convert(item.starts_at,time_zone),
+      ends_at: Timezone.convert(item.ends_at,time_zone),
       })
-    end
   end
 end
