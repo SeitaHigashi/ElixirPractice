@@ -10,19 +10,19 @@ config :nano_planner,
   ecto_repos: [NanoPlanner.Repo]
 
 # Configures the endpoint
-config :nano_planner, NanoPlanner.Endpoint,
+config :nano_planner, NanoPlannerWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "69VvsffqYge+oUm9EVrAA8hos55p1GxW2m6CXj1msEiN3rkEbGVli6seSyzbPLUw",
-  render_errors: [view: NanoPlanner.ErrorView, accepts: ~w(html json)],
+  secret_key_base: "tLFQHEzlvEcRySLv+z0EvI96bapfXTbwUNRVCusA1M+FbGqGcppPXRb/onDCxKfM",
+  render_errors: [view: NanoPlannerWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: NanoPlanner.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
-  metadata: [:request_id]
+  metadata: [:user_id]
 
-# Configures the default time Timezone
+  #Configures the default time zone
   config :nano_planner,
   default_time_zone: "Asia/Tokyo"
 

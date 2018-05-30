@@ -19,14 +19,14 @@ defmodule NanoPlanner.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {NanoPlanner, []},
-      extra_applications: [:logger]
+      mod: {NanoPlanner.Application, []},
+      extra_applications: [:logger, :runtime_tools]
     ]
   end
 
   # Specifies which paths to compile per environment.
-  defp elixirc_paths(:test), do: ["lib", "web", "test/support"]
-  defp elixirc_paths(_),     do: ["lib", "web"]
+  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(_),     do: ["lib"]
 
   # Specifies your project dependencies.
   #
@@ -41,9 +41,8 @@ defmodule NanoPlanner.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
-      {:ecto, "~> 2.1.6"},
       {:timex, "~> 3.1"},
-      {:timex_ecto, "~> 3.1"}
+      {:timex_ecto, "~>3.2"}
     ]
   end
 
