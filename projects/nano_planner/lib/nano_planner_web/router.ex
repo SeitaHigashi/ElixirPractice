@@ -13,9 +13,14 @@ defmodule NanoPlannerWeb.Router do
     pipe_through(:browser)
 
     get("/", TopController, :index)
-    get("/plan_items", PlanItemController, :index)
     get("/lessons/form", LessonController, :form)
     get("/lessons/register", LessonController, :register)
-    get("/plan_items/:id", PlanItemController, :show)
+    get("/lessons/hello", LessonController, :hello)
+
+    resources(
+    "/plan_items",
+    PlanItemController,
+    only: [:index,:new,:create,:show, :edit, :update]
+    )
   end
 end
