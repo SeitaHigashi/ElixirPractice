@@ -49,8 +49,25 @@ def update_plan_item(%PlanItem{} = plan_item, attrs) do
   |> Repo.update!()
 end
 
+def delete_plan_item(%PlanItem{} = plan_item) do
+  Repo.delete(plan_item)
+end
+
 def change_plan_item(%PlanItem{} = item) do
-  PlanItem.changeset(item, %{})
+  item
+  |> populate_virtual_fields()
+  |> PlanItem.changeset(%{})
+end
+
+defp populate_virtual_fields(item) do
+  Map.merge(item, %{
+    s_date: Timex.to_date(item.starts_at),
+    s_hour: item.starts_at.hour,
+    s_minute: item.starts_at.minute,
+    e_date: Timex.to_date(item.ends_at),
+    e_hour: item.ends_at.hour,
+    e_minute: item.ends_at.minute,
+    })
 end
 
   defp convert_datetime(items) when is_list(items) do
